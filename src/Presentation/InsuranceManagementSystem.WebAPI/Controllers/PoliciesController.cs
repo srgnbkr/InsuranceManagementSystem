@@ -1,4 +1,6 @@
-﻿using InsuranceManagementSystem.DataAccess.Abstract;
+﻿using InsuranceManagementSystem.Business;
+using InsuranceManagementSystem.Business.Abstract;
+using InsuranceManagementSystem.DataAccess.Abstract;
 using InsuranceManagementSystem.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,26 +16,41 @@ namespace InsuranceManagementSystem.WebAPI.Controllers
     public class PoliciesController : ControllerBase
     {
 
-        private readonly IPolicyRepository policyRepository;
+        
+        private readonly IPolicyService _policyService;
 
-        public PoliciesController(IPolicyRepository policyRepository)
+        public PoliciesController(IPolicyService policyService)
         {
-            this.policyRepository = policyRepository;
+            _policyService = policyService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var data = policyRepository.GetAll();
+            var data = _policyService.GetAll();
             return Ok(data);
         }
 
+
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _policyService.GetById(id);
+            return Ok(result);
+        }
 
         [HttpPost("add")]
-        public IActionResult AddPolicy(Policy policy)
+        public IActionResult Add(Policy policy)
         {
-            var data = policyRepository.Add(policy);
-            return Ok(data);
+            var result = _policyService.Add(policy);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
         }
+
+
+
     }
 }

@@ -1,3 +1,6 @@
+
+using InsuranceManagementSystem.Business.Abstract;
+using InsuranceManagementSystem.Business.Concrete;
 using InsuranceManagementSystem.DataAccess.Abstract;
 using InsuranceManagementSystem.DataAccess.Concrete;
 using Microsoft.AspNetCore.Builder;
@@ -29,6 +32,20 @@ namespace InsuranceManagementSystem.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IPolicyRepository, PolicyRepository>();
+            services.AddSingleton<IPolicyService, PolicyManager>();
+
+            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<ICustomerService, CustomerManager>();
+
+            services.AddSingleton<IInsuredRepository,InsuredRepository>();
+            services.AddSingleton<IInsuredService, InsuredManager>();
+
+            services.AddSingleton<IPaymentTypeRepository, PaymentTypeRepository>();
+            services.AddSingleton<IPaymentTypeService,PaymentTypeManager>();
+
+            services.AddSingleton<IPaymentRepository, PaymentRepository>();
+            services.AddSingleton<IPaymentService, PaymentManager>();
+            
 
             services.AddControllers();
             
@@ -53,10 +70,13 @@ namespace InsuranceManagementSystem.WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+               
+
             });
         }
     }

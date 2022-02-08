@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace InsuranceManagementSystem.DataAccess.Abstract
 {
-    public interface IPolicyRepository
+    public interface IInsuredRepository
     {
-        List<Policy> GetAll();
-        Policy GetById(int id);
-        Policy Add(Policy policy);
-
-
+        Insured Add(Insured insured);
     }
 }

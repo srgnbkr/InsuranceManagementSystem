@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InsuranceManagementSystem.Core\InsuranceManagementSystem.Core.csproj" />
+    <ProjectReference Include="..\InsuranceManagementSystem.DataAccess\InsuranceManagementSystem.DataAccess.csproj" />
+    <ProjectReference Include="..\InsuranceManagementSystem.Entities\InsuranceManagementSystem.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

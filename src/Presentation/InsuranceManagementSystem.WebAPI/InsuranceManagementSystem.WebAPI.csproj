@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\InsuranceManagementSystem.Business\InsuranceManagementSystem.Business.csproj" />
     <ProjectReference Include="..\..\Libraries\InsuranceManagementSystem.DataAccess\InsuranceManagementSystem.DataAccess.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,26 @@
+<form [formGroup]="customerAddForm" class="form-group">
+  <h5>Subscribe to our newsletter</h5>
+  <p>Monthly digest of whats new and exciting from us.</p>
+
+    <label for="firstName">Adınız</label>
+    <input id="firstName" type="text" formControlName="firstName" class="form-control" placeholder="İsim" />
+
+    <label for="lastName">Soyadınız</label>
+    <input id="lastName" type="text" formControlName="lastName" class="form-control" placeholder="Soyad" />
+
+    <label for="identityNumber">Tc Kimlik Numarası</label>
+    <input id="identityNumber" type="text" formControlName="identityNumber" class="form-control" placeholder="Tc Kimlik No" />
+
+    <label for="birthYear">Doğum Yılı</label>
+    <input id="birthYear" type="text" formControlName="birthYear" class="form-control" placeholder="Doğum Yılı" />
+
+    <label for="phoneNumber">Telefon Numarası</label>
+    <input id="phoneNumber" type="text" formControlName="phoneNumber" class="form-control" placeholder="Telefon" />
+
+    <label for="email">Email</label>
+    <input id="email" type="text" formControlName="email" class="form-control" placeholder="Email" />
+
+    <button class="btn btn-primary Ekle mt-4" (click)="customerAdd()">Müşteri Ekle</button>
+
+
+</form>

@@ -30,7 +30,7 @@ namespace InsuranceManagementSystem.DataAccess.Concrete
             {
                 
                 
-                    SqlCommand command = new SqlCommand("[dbo].[sp_GetAll_Policy]", connection);
+                    SqlCommand command = new SqlCommand("SpPolicyGetAll", connection);
                     command.CommandType = CommandType.StoredProcedure;
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
@@ -56,7 +56,7 @@ namespace InsuranceManagementSystem.DataAccess.Concrete
             {
 
 
-                SqlCommand command = new SqlCommand("[dbo].[sp_Policy_Insert]", connection);
+                SqlCommand command = new SqlCommand("SpPolicyInsert", connection);
                 command.CommandType = CommandType.StoredProcedure;
                 connection.Open();
                 //command.Parameters.AddWithValue("@PolicyId", policy.PolicyId); //IsIdentity
@@ -73,5 +73,33 @@ namespace InsuranceManagementSystem.DataAccess.Concrete
             }
             
         }
+
+        public Policy GetById(int id)
+        {
+            Policy policy = new Policy();
+
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("SpGetPolicyById", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                connection.Open();
+                command.Parameters.AddWithValue("@Id", id);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    policy.PolicyId = id;
+                    policy.Name = reader["Name"].ToString();
+                    policy.Description = reader["Description"].ToString();
+                    policy.Price = Convert.ToDecimal(reader["Price"]);
+                }
+                reader.Close();
+                return policy;
+                
+
+            }
+            
+            
+        }
+        
     }
 }
